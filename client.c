@@ -12,7 +12,7 @@ void DieWithError(char *errorMessage){
 }
 
 void commun(int sock){
-	char *message="1バルバトス 263体/s（事件簿）";
+	char *message="性欲";
 	char buf[BUF_SIZE]; 
 	int len_r;
 	if(send(sock,message,strlen(message),0)!=strlen(message))
