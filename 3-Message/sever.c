@@ -45,7 +45,7 @@ void DieWithError(char *errorMessage)
 int prepare_sever_socket(int port)
 {
 
-    int sock = socket(PF_INET, SOCK_STREAM, 0);
+    int servSock = socket(PF_INET, SOCK_STREAM, 0);
     if (sock < 0)
     {
         DieWithError("socket()faild");
@@ -55,7 +55,7 @@ int prepare_sever_socket(int port)
     severAddress.sin_addr.s_addr = htonl(INADDR_ANY);
     severAddress.sin_port = htons(port);
 
-    bind(severSock, (struct sockaddr *)&severAddress, sizeof(severAddress));
+    bind(servSock, (struct sockaddr *)&severAddress, sizeof(severAddress));
 
-    return severSock;
+    return servSock;
 }
