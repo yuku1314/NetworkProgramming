@@ -103,7 +103,7 @@ void commun(int sock)
         DieWithError("send() sent amessage of unexpected bytes");
     }
     //受信処理
-    read_until_delim(sock,msg,'_'BUF_SIZE);
+    read_until_delim(sock,msg,'_',BUF_SIZE);
     //表示処理
     printf("残高は%d円になりました",atoi(msg));
 }
