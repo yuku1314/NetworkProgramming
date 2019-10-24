@@ -8,6 +8,7 @@
 #define BUF_SIZE 256
 #define MONEY_DIGIT_SIZE 10
 
+
 void DieWithError(char *);
 int prepare_client_socket(char *, int);
 void my_scanf(char *, int);
