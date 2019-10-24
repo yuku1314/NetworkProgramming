@@ -11,6 +11,7 @@
 void DieWithError(char *);
 int prepare_client_socket(char *, int);
 void my_scanf(char *, int);
+void read_until_delim(int, char *, char, int);
 void commun(int);
 
 int main(int argc, char *argv[])
@@ -100,4 +101,34 @@ void commun(int sock)
     {
         DieWithError("send() sent amessage of unexpected bytes");
     }
+    //受信処理
+    read_until_delim(sock,msg,'_'BUF_SIZE);
+    //表示処理
+    printf("残高は%d円になりました",atoi(msg));
+}
+
+void read_until_delim(int sock, char *buf, char delimiter, int max_length)
+{
+    int len_r = 0;
+    int index_letter = 0;
+
+    while (index_letter < max_length - 1)
+    {
+        if ((len_r = recv(sock, buf + index_letter, 1, 0)) <= 0)
+        {
+            //エラー
+            printf("接続が切れました\n");
+            return;
+        }
+        if (buf[index_letter] == delimiter)
+        {
+            break; //区切り文字を受信→ループを抜ける
+        }
+        else
+        {
+            index_letter++;
+        }
+    }
+
+    buf[index_letter] = '\0';
 }

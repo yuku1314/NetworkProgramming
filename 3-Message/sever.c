@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         szClientAddr = sizeof(clientAddress);
         cliSock = accept(servSock, (struct sockaddr *)&clientAddress, &szClientAddr);
 
-        common(cliSock);
+        commun(cliSock);
 
         close(cliSock);
     }
@@ -45,7 +45,7 @@ void DieWithError(char *errorMessage)
     exit(1);
 }
 
-int prepare_sever_socket(int port)
+int prepare_server_socket(int port)
 {
 
     int servSock = socket(PF_INET, SOCK_STREAM, 0);
@@ -102,7 +102,7 @@ void set_current_balance(int new_balance)
 void commun(int sock)
 {
     char buf[BUF_SIZE];
-    int balance = get_current_balance;
+    int balance = get_current_balance();
 
     read_until_delim(sock, buf, '_', BUF_SIZE);
     balance += atoi(buf);
